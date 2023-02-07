@@ -2,7 +2,7 @@ import RPi.GPIO as GPIO
 import time
 import sys
 
-class _:
+class Stepper:
 
   def __init__(self, dir_pin, step_pin, en_pin):
 
@@ -16,9 +16,17 @@ class _:
     GPIO.setup(self._dir_pin, GPIO.OUT, initial=GPIO.HIGH)
     GPIO.setup(self._step_pin, GPIO.OUT, initial=GPIO.LOW)
     
-  def oneStep(self, direction):
+  def enable(self):
+    if self._en_pin:
+      GPIO.setup(self._en_pin, GPIO.OUT, initial=GPIO.LOW)
+      
+  def disable(self):
+    if self._en_pin:
+      GPIO.setup(self._en_pin, GPIO.OUT, initial=GPIO.HIGH)
     
-    GPIO.output(self._dir_pin, GPIO.HIGH if direction == CW else GPIO.LOW)
+  def oneStep(self, step_dir):
+    
+    GPIO.output(self._dir_pin, GPIO.HIGH if step_dir == 'CW' else GPIO.LOW)
     
     GPIO.output(self._step_pin, GPIO.HIGH)
     time.sleep(.005)
@@ -29,9 +37,12 @@ class _:
     
     while True:
       try:
-        oneStep(self, self._dir_pin)
+        oneStep(self._dir_pin)
       except KeyboardInterrupt:
+        print("User keyboard interrupt detected, program ceases")
         break
         
-  def Accelerate(self,)
+  def Accelerate(self, accel, accel_dir):
+    
+    
         
