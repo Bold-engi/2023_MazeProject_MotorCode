@@ -39,4 +39,3 @@ class DRV8825:
     GPIO.output(self._step_pin, GPIO.HIGH)
     time.sleep(.005)
     GPIO.output(self._step_pin, GPIO.LOW)
-    time.sleep(.005)
