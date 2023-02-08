@@ -5,6 +5,7 @@ class opProfile:
   def __init__(self):
     
     # Self-explained
+    self._cur_step        = 0
     self._steps_done      = 0
     self._target_steps    = 0
     self._rotor_radius_mm = 4.5/2
@@ -18,3 +19,6 @@ class opProfile:
 
   def set_target_steps(self):
     self._target_steps = self.calc_steps()
+
+  def current_step(self):
+    self._cur_step += 1
