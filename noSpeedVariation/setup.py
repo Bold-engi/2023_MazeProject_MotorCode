@@ -12,10 +12,12 @@ class DRV8825:
   def enable(self):
     if self._en_pin:
       GPIO.setup(self._en_pin, GPIO.OUT, initial=GPIO.LOW)
+    print('Driver enabled')
       
   def disable(self):
     if self._en_pin:
       GPIO.setup(self._en_pin, GPIO.OUT, initial=GPIO.HIGH)
+    print('Driver disabled')
       
   def on(self):
     
