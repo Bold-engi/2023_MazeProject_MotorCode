@@ -32,7 +32,7 @@ class DRV8825:
     
   def oneStep(self, dir):
     
-    GPIO.output(self._DIR, GPIO.HIGH if dir==CW else GPIO.LOW)
+    GPIO.output(self._DIR, GPIO.HIGH if dir==1 else GPIO.LOW)
     
     GPIO.output(self._STEP, GPIO.LOW)
     time.sleep(.005)
