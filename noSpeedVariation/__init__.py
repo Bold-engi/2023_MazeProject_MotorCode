@@ -1,10 +1,10 @@
-from operation import opProfile
-from setup import DRV8825
-import numpy
+from operation import opProfile as OP
+from setup import DRV8825 as DRV
 
-class RUN:
-  
-  def __init__(self):
-    pass
-  
-  def 
+class rampProfile:
+    
+    def __init__(self):
+        pass
+    
+    def move(self, direction, distance, stepdelay):
+        pass
