@@ -112,38 +112,3 @@ class DRV8825:
         
         await x
         await y
-
-'''            
-    def move_diag(self, displacement_mm, angle_deg, direction, disptime):
-        
-        def X():
-            _steps_done_x = 0
-            while _steps_done_x <= _ax_x.calc_steps():
-                
-                GPIO.output(self._dir_pin_x, GPIO.HIGH if direction==1 else GPIO.LOW)
-                
-                GPIO.output(self._step_pin_x, GPIO.LOW)
-                time.sleep(disptime/distp_x)
-                GPIO.output(self._step_pin_x, GPIO.HIGH)
-                time.sleep(disptime/distp_x)
-                
-                _steps_done_x += 1
-                print("current step x: ", _steps_done_x)
-                
-        def Y():
-            _steps_done_y = 0
-            while _steps_done_y <= _ax_y.calc_steps():
-                
-                GPIO.output(self._dir_pin_y, GPIO.HIGH if direction==1 else GPIO.LOW)
-                
-                GPIO.output(self._step_pin_y, GPIO.LOW)
-                time.sleep(disptime/distp_y)
-                GPIO.output(self._step_pin_y, GPIO.HIGH)
-                time.sleep(disptime/distp_y)
-                
-                _steps_done_y += 1
-                print("current step x: ", _steps_done_y)
-                
-        X()
-        Y()
-'''
