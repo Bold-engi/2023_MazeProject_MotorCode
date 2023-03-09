@@ -29,10 +29,3 @@ class opProfile:
         '''
         return [self._distance_mm * math.cos(math.radians(self._angle_deg)),
                 self._distance_mm * math.sin(math.radians(self._angle_deg))]
-    
-'''
-    def disp_per_step(self):     
-        [self._distp_x, self._distp_y] = self.diag_to_ax()
-        return [round(self._distp_x/self.calc_steps(), 2),
-                round(self._distp_y/self.calc_steps(), 2)]
-'''
