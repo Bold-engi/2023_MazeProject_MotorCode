@@ -17,12 +17,11 @@ R.enable()
 R.on()
 
 time.sleep(2)
-'''
+
 R.move_axial('X', 50, 1, .005)
 
 time.sleep(2)
 
 R.move_axial('Y', 30 ,0, .005)
-'''
 
 asyncio.run(R.move_diag(50,30,1,1,5))
