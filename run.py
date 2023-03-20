@@ -43,12 +43,9 @@ class DRV8825:
         GPIO.setup(self._dir_pin_y, GPIO.OUT, initial=GPIO.HIGH)
         GPIO.setup(self._step_pin_y, GPIO.OUT, initial=GPIO.LOW)
         
-    def move_axial(self, motor, distance_mm, direction, stepdelay):
-        '''
-        distance_mm : axial distance (always +ve) in milimeters
+'''
         
-        stepdelay   : fractional number with no less than 0.002s
-        '''
+    def move_axial(self, motor, distance_mm, direction, stepdelay):
         
         _steps_done = 0
         print("Magnet now moving axially")
@@ -100,12 +97,7 @@ class DRV8825:
             _steps_done_y += 1
             
     async def move_diag(self, displacement_mm, angle_deg, dir_x, dir_y, disptime):
-        '''
-        displacement_mm : diagonal distance (always +ve) in milimeters
-        
-        disptime        : used to calculate stepdelay for each motor. Units: second
-        '''
-        
+
         print("Magnet now moving diagonally")
         
         diag = OP(displacement_mm, angle_deg)
@@ -119,10 +111,7 @@ class DRV8825:
         
         x = asyncio.create_task(self.X(dir_x, disptime/_ax_x.calc_steps(), _ax_x.calc_steps()))
         y = asyncio.create_task(self.Y(dir_y, disptime/_ax_y.calc_steps(), _ax_y.calc_steps()))
-        '''
-        Value of disptime/_ax_i.calc_steps() should be no less than 0.002
-        otherwise the motor will suffer from vibration
-        '''
         
         await x
         await y
+'''
