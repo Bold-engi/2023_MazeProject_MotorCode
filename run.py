@@ -1,4 +1,4 @@
-from operation import opProfile as OP   # This line is no longer needed (2023.03.20 23:36)
+from operation import opProfile as OP
 
 import RPi.GPIO as GPIO
 import asyncio, time, math
@@ -43,7 +43,7 @@ class DRV8825:
         GPIO.setup(self._dir_pin_y, GPIO.OUT, initial=GPIO.HIGH)
         GPIO.setup(self._step_pin_y, GPIO.OUT, initial=GPIO.LOW)
         
-'''
+
         
     def move_axial(self, motor, distance_mm, direction, stepdelay):
         
@@ -114,4 +114,3 @@ class DRV8825:
         
         await x
         await y
-'''
