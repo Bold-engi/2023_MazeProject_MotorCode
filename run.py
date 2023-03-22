@@ -45,15 +45,8 @@ class DRV8825:
         
 
         
-    def move_axial(self, motor, distance_mm, direction, stepdelay):
+    def move_axial(self, motor, direction, stepdelay):
         
-        _steps_done = 0
-        print("Magnet now moving axially")
-        _ax = OP(distance_mm)
-        print("STEPs requirement: ", _ax.calc_steps())
-        
-        while _steps_done <= _ax.calc_steps():
-            print("current step: ", _steps_done)
             if motor == "X":
                 GPIO.output(self._dir_pin_x, GPIO.HIGH if direction==1 else GPIO.LOW)
                 GPIO.output(self._step_pin_x, GPIO.LOW)
@@ -68,8 +61,7 @@ class DRV8825:
                 GPIO.output(self._step_pin_y, GPIO.HIGH)
                 time.sleep(stepdelay)
             
-            _steps_done += 1
-
+'''
     async def X(self, _dir_x, _stpdel_x, _tar_stp_x):
         _steps_done_x = 0
         
@@ -114,3 +106,4 @@ class DRV8825:
         
         await x
         await y
+'''
