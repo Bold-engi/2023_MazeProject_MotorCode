@@ -1,4 +1,13 @@
 '''
+### 
+2024 update
+
+Originally the idea was to let the image processing system to give the distance
+that the ball need to roll to the next checkpoint.
+
+The idea was rejected due to inflexibility.
+###
+
 import math
 
 class opProfile:
@@ -23,4 +32,4 @@ class opProfile:
                 self._distance_mm * math.sin(math.radians(self._angle_deg))]
 '''
 
-  # This file is no longer needed as no motors aren't running with a pre-setting distance
+  # This file is no longer needed as motors aren't running with a pre-setting distance
