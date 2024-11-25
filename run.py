@@ -16,17 +16,17 @@ class DRV8825:
         self._dir_pin_y    = dir_pin_y
         self._step_pin_y   = step_pin_y
         self._en_pin_y     = en_pin_y
-        
+
+        # Set GPIO pin option
         GPIO.setmode(GPIO.BCM)
         GPIO.setwarnings(False)
         
     def enable(self):
-        
         if self._en_pin_x and self._en_pin_y:
             GPIO.setup(self._en_pin_x, GPIO.OUT, initial=GPIO.LOW)
             GPIO.setup(self._en_pin_y, GPIO.OUT, initial=GPIO.LOW)
+            
         print("EN pins enabled: ", self._en_pin_x, self._en_pin_y)
-        
         print("DIR pins are: ", self._dir_pin_x, self._dir_pin_y)
         print("STEP pins are: ", self._step_pin_x, self._step_pin_y)
         
@@ -34,10 +34,11 @@ class DRV8825:
         if self._en_pin_x and self._en_pin_y:
             GPIO.setup(self._en_pin_x, GPIO.OUT, initial=GPIO.HIGH)
             GPIO.setup(self._en_pin_y, GPIO.OUT, initial=GPIO.HIGH)
+            
         print("EN pins disabled")
         
     def on(self):
-        
+        # Initialize the STEP and DIRECTION pins
         GPIO.setup(self._dir_pin_x, GPIO.OUT, initial=GPIO.HIGH)
         GPIO.setup(self._step_pin_x, GPIO.OUT, initial=GPIO.LOW)
         GPIO.setup(self._dir_pin_y, GPIO.OUT, initial=GPIO.HIGH)
@@ -46,22 +47,25 @@ class DRV8825:
 
         
     def move_axial(self, motor, direction, stepdelay):
-        
-            if motor == "X":
-                GPIO.output(self._dir_pin_x, GPIO.HIGH if direction==1 else GPIO.LOW)
-                GPIO.output(self._step_pin_x, GPIO.LOW)
-                time.sleep(stepdelay)
-                GPIO.output(self._step_pin_x, GPIO.HIGH)
-                time.sleep(stepdelay)
-                
-            elif motor == "Y":
-                GPIO.output(self._dir_pin_y, GPIO.HIGH if direction==1 else GPIO.LOW)
-                GPIO.output(self._step_pin_y, GPIO.LOW)
-                time.sleep(stepdelay)
-                GPIO.output(self._step_pin_y, GPIO.HIGH)
-                time.sleep(stepdelay)
+        # Motor movement
+        if motor == "X":
+            GPIO.output(self._dir_pin_x, GPIO.HIGH if direction==1 else GPIO.LOW)
+            GPIO.output(self._step_pin_x, GPIO.LOW)
+            time.sleep(stepdelay)                                                    # Change stepdelay to avoid clicking
+            GPIO.output(self._step_pin_x, GPIO.HIGH)
+            time.sleep(stepdelay)
+            
+        elif motor == "Y":
+            GPIO.output(self._dir_pin_y, GPIO.HIGH if direction==1 else GPIO.LOW)
+            GPIO.output(self._step_pin_y, GPIO.LOW)
+            time.sleep(stepdelay)
+            GPIO.output(self._step_pin_y, GPIO.HIGH)
+            time.sleep(stepdelay)
             
 '''
+###
+This part was intended to move the electromagnet diagonally instead of moving in axial direction.
+###
     async def X(self, _dir_x, _stpdel_x, _tar_stp_x):
         _steps_done_x = 0
         
