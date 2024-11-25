@@ -1,3 +1,9 @@
+"""
+2024 Nov update
+
+This is the file where the drivier IC would drive the motor based on the command sent from
+image processing system.
+"""
 from operation import opProfile as OP
 from run import DRV8825 as DRV
 import time, math, client, socket
@@ -11,7 +17,6 @@ Y_STEP = 13
 Y_EN = 26
 
 client.connect()
-
 data = client.receive()
 
 direction = 1
